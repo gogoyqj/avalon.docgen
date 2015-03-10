@@ -276,7 +276,13 @@ function handleExtension(dir, name) {
                 } else if (obj && key === 'param') {
                     var paramName = mKey[2];
                     if (!paramName && expr.type === 'FunctionExpression') {
-                        paramName = expr.params[obj.params ? obj.params.length : 0].name;
+                        paramName = expr.params[obj.params ? obj.params.length : 0]
+                        paramName = paramName && paramName.name;
+                        console.log(value)
+                        if(!paramName) {
+                            var parts = value.trim().split(" ")
+                            paramName = parts[0].replace(/[^0-9A-Za-z\$_]$/g, "")
+                        }
                     }
                     (obj.params || (obj.params = [])).push({
                         name: paramName,
