@@ -282,6 +282,7 @@ function handleExtension(dir, name) {
                         if(!paramName) {
                             var parts = value.trim().split(" ")
                             paramName = parts[0].replace(/[^0-9A-Za-z\$_]$/g, "")
+                            value = parts.slice(1).join(" ")
                         }
                     }
                     (obj.params || (obj.params = [])).push({
